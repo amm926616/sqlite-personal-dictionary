@@ -7,3 +7,6 @@ I looked for other projects that could fulfill my needs. I thought Stardict and 
 You can also use this program as your personal dictionary. The functionality is straightforward: you can add new words, search for them, and delete them. For me, the best part is the keyboard shortcuts. Pressing "Enter" in the word panel triggers a search, while pressing "Enter" in the meaning panel adds a new entry. To delete an entry, you need to fill in both the word and meaning panels. I use this program to add new syllable meanings as I come across them. When I encounter a new word, I try to guess its meaning based on its syllables. Thanks to this program, my vocabulary memorization workflow is twice as fast.
 
 I call it a "personal dictionary" because it functions similarly to a traditional dictionary app. But as I mentioned, I use it primarily to break down vocabulary and collect the meanings of base syllables, which is essential for my INTP brain.
+
+### screenshot
+![screenshot](resources/vmanager.png)
