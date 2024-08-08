@@ -5,4 +5,4 @@ I tried to find other projects which could full-fill my need. I thought stardict
 
 You can use also use this program as your personal dictionary. The functionality is pretty straight forward. You can add new words, find and delete them. The best part is keyboard shortcuts for me. Pressing enter in word panel trigger searching entry. Pressing enter in meaning panel triggers adding entry. You need to fill both panel to delete certain meaning. I use this program to add new syllable meaning I came across. When I encounter a vocabulary, I try to guess the meaning of it from its syllable. Thanks to this program, my vocabulary memorizing work flow is twice as fast. 
 
-I call if personal dictionary for its similar functionality for a dictionary app. But as I mentioned above I use it for my intp brain to breakdown vocabulary and collect base syllable meaning.
+I call it personal dictionary for its similar functionality for a dictionary app. But as I mentioned above I use it for my intp brain to breakdown vocabulary and collect base syllable meaning.
