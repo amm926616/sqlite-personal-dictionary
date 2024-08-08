@@ -9,8 +9,8 @@ You can also use this program as your personal dictionary. The functionality is 
 I call it a "personal dictionary" because it functions similarly to a traditional dictionary app. But as I mentioned, I use it primarily to break down vocabulary and collect the meanings of base syllables, which is essential for my INTP brain.
 
 ### screenshots
-##### screenshot1
+##### on windows barebone
 ![screenshot](resources/screenshot1.png)
-##### screenshot2
+##### on linux tailored
 ![screenshot](resources/screenshot2.png)
 
