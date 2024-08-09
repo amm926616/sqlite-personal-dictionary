@@ -54,7 +54,7 @@ class VocabularyManager(QtWidgets.QWidget):
         self.meaning_input.returnPressed.connect(self.add_entry)
 
     def initDB(self):
-        self.conn = sqlite3.connect('/home/adam178/.local/share/vmanager/vocabulary.db')
+        self.conn = sqlite3.connect('~/.local/share/vmanager/vocabulary.db')
         self.cursor = self.conn.cursor()
         self.cursor.execute('''
         CREATE TABLE IF NOT EXISTS vocabulary (
