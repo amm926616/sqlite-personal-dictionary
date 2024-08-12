@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QMessageBox
 import sys
 import sqlite3
@@ -12,7 +12,13 @@ class VocabularyManager(QtWidgets.QWidget):
         self.initDB()
 
     def initUI(self):
-        self.setWindowTitle('Vocabulary Manager')
+        self.setWindowTitle('Personal Dictionary')
+
+        # The icon
+        self.setWindowIcon(QtGui.QIcon('/home/adam178/.local/share/vmanager/korean_icon.png'))
+
+        # Make the window always on top
+        self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
 
         # Layouts
         layout = QtWidgets.QVBoxLayout()
@@ -54,7 +60,7 @@ class VocabularyManager(QtWidgets.QWidget):
         self.meaning_input.returnPressed.connect(self.add_entry)
 
     def initDB(self):
-        self.conn = sqlite3.connect('~/.local/share/vmanager/vocabulary.db')
+        self.conn = sqlite3.connect('/home/adam178/.local/share/vmanager/vocabulary.db')
         self.cursor = self.conn.cursor()
         self.cursor.execute('''
         CREATE TABLE IF NOT EXISTS vocabulary (
@@ -111,19 +117,48 @@ class VocabularyManager(QtWidgets.QWidget):
 
     def search_entry(self):
         word = self.word_input.text()
+
+        # Base meaning: exact match for the word
         self.cursor.execute('SELECT meaning FROM vocabulary WHERE word = ?', (word,))
-        results = self.cursor.fetchall()
-        if results:
-            display_text = '\n'.join([f'{meaning[0]}' for meaning in results])
-            self.result_text.setText(display_text)
+        base_results = self.cursor.fetchall()
+
+        # Syllables: split the word into syllables
+        syllables = [word[i:i+1] for i in range(len(word))]  # Each character as a syllable
+        related_results = {syllable: [] for syllable in syllables}
+
+        # Search for related meanings containing each syllable
+        for syllable in syllables:
+            self.cursor.execute('SELECT word, meaning FROM vocabulary WHERE word LIKE ?', (f'%{syllable}%',))
+            results = self.cursor.fetchall()
+            related_results[syllable] = results
+
+        # Display results
+        display_text = ""
+
+        if base_results:
+            display_text += f"Base Meaning for '{word}':\n"
+            display_text += '\n'.join([f'- {meaning[0]}' for meaning in base_results])
+            display_text += "\n\n"
         else:
-            self.result_text.setText('No entry found.')
-        self.meaning_input.clear() #clearing the meaning input box
+            display_text += f"No exact match found for '{word}'.\n\n"
+
+        if any(related_results.values()):
+            display_text += "Related Meanings:\n"
+            for syllable, results in related_results.items():
+                if results:
+                    display_text += f"\nSyllable '{syllable}':\n"
+                    display_text += '\n'.join([f'{word}: {meaning}' for word, meaning in results])
+                    display_text += "\n"
+        else:
+            display_text += "No related meanings found."
+
+        self.result_text.setText(display_text)
+        self.meaning_input.clear()  # Clearing the meaning input box
 
     def view_all_entries(self):
         self.cursor.execute('SELECT word, meaning FROM vocabulary')
         entries = self.cursor.fetchall()
-        display_text = '\n'.join([f'{word}: {meaning}' for word, meaning in entries])
+        display_text = '\n'.join([f'{i+1}. {word}: {meaning}' for i, (word, meaning) in enumerate(entries)])
         self.result_text.setText(display_text)
 
     def closeEvent(self, event):
