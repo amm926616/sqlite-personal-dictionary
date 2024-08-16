@@ -72,8 +72,8 @@ class VocabularyManager(QtWidgets.QWidget):
         self.conn.commit()
 
     def add_entry(self):
-        word = self.word_input.text()
-        meaning = self.meaning_input.text()
+        word = self.word_input.text().strip()
+        meaning = self.meaning_input.text().strip()
         if (word != "" and meaning != ""):
             self.cursor.execute('INSERT INTO vocabulary (word, meaning) VALUES (?, ?)', (word, meaning))
             self.conn.commit()
@@ -115,7 +115,7 @@ class VocabularyManager(QtWidgets.QWidget):
             self.result_text.setText('Please provide both word and meaning.')
 
     def search_entry(self):
-        word = self.word_input.text()
+        word = self.word_input.text().strip()
 
         # Base meaning: exact match for the word
         self.cursor.execute('SELECT meaning FROM vocabulary WHERE word = ?', (word,))
