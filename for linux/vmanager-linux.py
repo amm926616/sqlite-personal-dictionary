@@ -126,11 +126,20 @@ class VocabularyManager(QtWidgets.QWidget):
         syllables = [word[i:i+1] for i in range(len(word))]  # Each character as a syllable
         related_results = {syllable: [] for syllable in syllables}
 
-        # Search for related meanings containing each syllable
+        # Define a list of characters/syllables to remove
+        remove_list = [" ", "하", "해", "다", "하다", "를", "을"]
+
+        # Iterate over the syllables
         for syllable in syllables:
-            self.cursor.execute('SELECT word, meaning FROM vocabulary WHERE word LIKE ?', (f'%{syllable}%',))
-            results = self.cursor.fetchall()
-            related_results[syllable] = results
+            # Remove the unwanted characters/syllables
+            for remove in remove_list:
+                syllable = syllable.replace(remove, "")
+            
+            # Only proceed if the syllable is not empty after removing characters
+            if syllable:
+                self.cursor.execute('SELECT word, meaning FROM vocabulary WHERE word LIKE ?', (f'%{syllable}%',))
+                results = self.cursor.fetchall()
+                related_results[syllable] = results
 
         # Display results
         display_text = ""
