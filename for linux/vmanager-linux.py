@@ -27,10 +27,10 @@ class VocabularyManager(QtWidgets.QWidget):
         # Widgets
         self.word_input = QtWidgets.QLineEdit()
         self.meaning_input = QtWidgets.QLineEdit()
-        self.add_button = QtWidgets.QPushButton('Add Entry')
+        # self.add_button = QtWidgets.QPushButton('Add Entry')
         # self.edit_button = QtWidgets.QPushButton('Edit Entry')
         self.delete_button = QtWidgets.QPushButton('Delete Entry')
-        self.search_button = QtWidgets.QPushButton('Search Entry')
+        # self.search_button = QtWidgets.QPushButton('Search Entry')
         self.view_button = QtWidgets.QPushButton('View All Entries')
         self.result_text = QtWidgets.QTextEdit()
         self.result_text.setReadOnly(True)
@@ -39,20 +39,20 @@ class VocabularyManager(QtWidgets.QWidget):
         form_layout.addRow('Word:', self.word_input)
         form_layout.addRow('Meaning:', self.meaning_input)
         layout.addLayout(form_layout)
-        layout.addWidget(self.add_button)
+        # layout.addWidget(self.add_button)
         # layout.addWidget(self.edit_button)
         layout.addWidget(self.delete_button)
-        layout.addWidget(self.search_button)
+        # layout.addWidget(self.search_button)
         layout.addWidget(self.view_button)
         layout.addWidget(self.result_text)
 
         self.setLayout(layout)
 
         # Connect buttons
-        self.add_button.clicked.connect(self.add_entry)
+        # self.add_button.clicked.connect(self.add_entry)
         # self.edit_button.clicked.connect(self.edit_entry)
         self.delete_button.clicked.connect(self.delete_entry)
-        self.search_button.clicked.connect(self.search_entry)
+        # self.search_button.clicked.connect(self.search_entry)
         self.view_button.clicked.connect(self.view_all_entries)
 
         # Connect returnPressed signal to the search_entry method
@@ -114,7 +114,6 @@ class VocabularyManager(QtWidgets.QWidget):
         else:
             self.result_text.setText('Please provide both word and meaning.')
 
-
     def search_entry(self):
         word = self.word_input.text()
 
@@ -139,7 +138,10 @@ class VocabularyManager(QtWidgets.QWidget):
             if syllable:
                 self.cursor.execute('SELECT word, meaning FROM vocabulary WHERE word LIKE ?', (f'%{syllable}%',))
                 results = self.cursor.fetchall()
-                related_results[syllable] = results
+                
+                # Filter out the original word from the results
+                filtered_results = [(w, m) for w, m in results if w != word]
+                related_results[syllable] = filtered_results
 
         # Display results
         display_text = ""
@@ -156,7 +158,7 @@ class VocabularyManager(QtWidgets.QWidget):
             for syllable, results in related_results.items():
                 if results:
                     display_text += f"\nSyllable '{syllable}':\n"
-                    display_text += '\n'.join([f'{word}: {meaning}' for word, meaning in results])
+                    display_text += '\n'.join([f'{w}: {m}' for w, m in results])
                     display_text += "\n"
         else:
             display_text += "No related meanings found."
