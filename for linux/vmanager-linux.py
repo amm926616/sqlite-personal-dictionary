@@ -29,8 +29,8 @@ class VocabularyManager(QtWidgets.QWidget):
         self.meaning_input = QtWidgets.QLineEdit()
         # self.add_button = QtWidgets.QPushButton('Add Entry')
         # self.edit_button = QtWidgets.QPushButton('Edit Entry')
+        self.search_button = QtWidgets.QPushButton('Search Entry')
         self.delete_button = QtWidgets.QPushButton('Delete Entry')
-        # self.search_button = QtWidgets.QPushButton('Search Entry')
         self.view_button = QtWidgets.QPushButton('View All Entries')
         self.result_text = QtWidgets.QTextEdit()
         self.result_text.setReadOnly(True)
@@ -41,8 +41,8 @@ class VocabularyManager(QtWidgets.QWidget):
         layout.addLayout(form_layout)
         # layout.addWidget(self.add_button)
         # layout.addWidget(self.edit_button)
+        layout.addWidget(self.search_button)
         layout.addWidget(self.delete_button)
-        # layout.addWidget(self.search_button)
         layout.addWidget(self.view_button)
         layout.addWidget(self.result_text)
 
@@ -51,8 +51,8 @@ class VocabularyManager(QtWidgets.QWidget):
         # Connect buttons
         # self.add_button.clicked.connect(self.add_entry)
         # self.edit_button.clicked.connect(self.edit_entry)
+        self.search_button.clicked.connect(self.search_entry)
         self.delete_button.clicked.connect(self.delete_entry)
-        # self.search_button.clicked.connect(self.search_entry)
         self.view_button.clicked.connect(self.view_all_entries)
 
         # Connect returnPressed signal to the search_entry method
