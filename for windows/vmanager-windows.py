@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+# windows version will be late in developement since my daily driver is archlinux. 
 # the database(vocabulary.db) is saved in vmanager folder under local folder of %appdata%
 # I used to migrate from my vocabulary.md to the database
 
