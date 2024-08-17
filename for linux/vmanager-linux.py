@@ -1,9 +1,12 @@
 #! /usr/bin/env python
 
-from PyQt5 import QtWidgets, QtGui, QtCore
-from PyQt5.QtWidgets import QMessageBox
 import sys
 import sqlite3
+
+from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5.QtCore import Qt # for shortcuts >> currently Ctrl + S for search
+from PyQt5.QtWidgets import QMessageBox
+
 
 class VocabularyManager(QtWidgets.QWidget):
     def __init__(self):
@@ -79,6 +82,15 @@ class VocabularyManager(QtWidgets.QWidget):
             self.conn.commit()
             self.result_text.setText(f'Added: {word} - {meaning}')
 
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_S and event.modifiers() & Qt.ControlModifier:
+            self.search_entry()
+        elif event.key() == Qt.Key_D and event.modifiers() & Qt.ControlModifier:
+            self.delete_entry()
+        else:
+            super().keyPressEvent(event)
+
     # def edit_entry(self):
     #     word = self.word_input.text()
     #     new_meaning = self.meaning_input.text()
@@ -125,11 +137,18 @@ class VocabularyManager(QtWidgets.QWidget):
         syllables = [word[i:i+1] for i in range(len(word))]  # Each character as a syllable
         related_results = {syllable: [] for syllable in syllables}
 
+        # Generate combinations of syllables for words longer than 2 syllables
+        combinations = []
+        if len(syllables) > 2:
+            for i in range(1, len(syllables)):
+                combination = ''.join(syllables[:i+1])
+                combinations.append(combination)
+
         # Define a list of characters/syllables to remove
         remove_list = [" ", "하", "해", "다", "하다", "를", "을"]
 
-        # Iterate over the syllables
-        for syllable in syllables:
+        # Iterate over the syllables and combinations
+        for syllable in syllables + combinations:
             # Remove the unwanted characters/syllables
             for remove in remove_list:
                 syllable = syllable.replace(remove, "")
@@ -154,10 +173,10 @@ class VocabularyManager(QtWidgets.QWidget):
             display_text += f"No exact match found for '{word}'.\n\n"
 
         if any(related_results.values()):
-            display_text += "Related Meanings:\n"
+            display_text += "Related Meanings:"
             for syllable, results in related_results.items():
                 if results:
-                    display_text += f"\nSyllable '{syllable}':\n"
+                    display_text += f"\nSyllable/Combination '{syllable}':\n"
                     display_text += '\n'.join([f'{w}: {m}' for w, m in results])
                     display_text += "\n"
         else:
