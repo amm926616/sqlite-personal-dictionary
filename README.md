@@ -13,4 +13,6 @@ I call it a "personal dictionary" because it functions similarly to a traditiona
 ![screenshot](resources/screenshot1.png)
 ##### on linux tailored
 ![screenshot](resources/screenshot2.png)
+##### syllable/combinations
+![full-screenshot](resources/Screenshot_20240817_124259.png)
 
