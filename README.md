@@ -9,8 +9,8 @@ You can also use this program as your personal dictionary. The functionality is 
 I call it a "personal dictionary" because it functions similarly to a traditional dictionary app. But as I mentioned, I use it primarily to break down vocabulary and collect the meanings of base syllables, which is essential for my INTP brain.
 
 #### Keyboard shortcuts
-- ctrl + S >> Search Entry
-- Ctrl + D >> Delete Entry
+- ctrl + s >> Search Entry
+- ctrl + d >> Delete Entry
 
 ### screenshots
 ##### on windows barebone
