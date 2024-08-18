@@ -86,7 +86,7 @@ class VocabularyManager(QtWidgets.QWidget):
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_S and event.modifiers() & Qt.ControlModifier:
             self.search_entry()
-        elif event.key() == Qt.Key_D and event.modifiers() & Qt.ControlModifier:
+        elif event.key() == Qt.Key_Q and event.modifiers() & Qt.ControlModifier:
             self.delete_entry()
         else:
             super().keyPressEvent(event)
@@ -104,8 +104,8 @@ class VocabularyManager(QtWidgets.QWidget):
 
 
     def delete_entry(self):
-        word = self.word_input.text()
-        meaning = self.meaning_input.text()
+        word = self.word_input.text().strip()
+        meaning = self.meaning_input.text().strip()
         if word and meaning:
             # Show confirmation dialog
             reply = QMessageBox.question(
@@ -145,7 +145,7 @@ class VocabularyManager(QtWidgets.QWidget):
                 combinations.append(combination)
 
         # Define a list of characters/syllables to remove
-        remove_list = [" ", "하", "해", "다", "하다", "를", "을"]
+        remove_list = [" ", "하", "다", "하다", "를", "을"]
 
         # Iterate over the syllables and combinations
         for syllable in syllables + combinations:

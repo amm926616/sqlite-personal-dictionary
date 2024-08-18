@@ -1,4 +1,4 @@
-# sqlite-personal-dictionary
+### sqlite-personal-dictionary
 
 I believe the Korean language is similar to my native Burmese in many ways. One key similarity is that the composition of each word is made up of base syllables, each with its own meaning. This project was born out of a desperate need because my INTP brain struggles to memorize vocabulary without breaking it down into these base components.
 
