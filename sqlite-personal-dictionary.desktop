@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Sqlite Personal Dictionary
+Comment=Create you diy personal dictionary from scratch
+Exec=python /usr/bin/sqlite-personal-dictionary/main.py
+Icon=/usr/bin/sqlite-personal-dictionary/resources/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;Software;
