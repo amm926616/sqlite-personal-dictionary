@@ -8,7 +8,7 @@ Download the installer from the Releases section.
 
 #### Linux
 
-Clone or download this repository and use it as desired. If you want to add this software to your application search, there is a bash script included. This script will:
+Clone or download this repository and use it as desired. If you want to add this software to your application search, there is a bash script included. If you are new to linux, use `bash install.sh` to install. This script will:
 
 1. Add the `sqlite-personal-dictionary` folder to `/usr/bin/`.
 2. Add a `pdict` alias to your `.bashrc`.
