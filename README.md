@@ -1,6 +1,19 @@
 ### sqlite-personal-dictionary
 ![logo](./neuron-connection.png)
 
+#### Windows
+
+Download the installer from the Releases section.
+
+#### Linux
+
+Clone or download this repository and use it as desired. If you want to add this software to your application search, there is a bash script included. This script will:
+
+1. Add the `sqlite-personal-dictionary` folder to `/usr/bin/`.
+2. Add a `pdict` alias to your `.bashrc`.
+3. Copy `sqlite-personal-dictionary.desktop` to `~/.local/share/applications/` so you can access it from the application search.
+
+Make sure to reload your `.bashrc` or restart your terminal for the alias to take effect
 
 ## How I made it
 I believe the Korean language is similar to my native Burmese in many ways. One key similarity is that the composition of each word is made up of base syllables, each with its own meaning. This project was born out of a desperate need because my INTP brain struggles to memorize vocabulary without breaking it down into these base components.
