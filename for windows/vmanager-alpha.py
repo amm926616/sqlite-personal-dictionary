@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import sys, os
+import sys
 import sqlite3
 
 from PyQt5 import QtWidgets, QtGui, QtCore
@@ -18,8 +18,7 @@ class VocabularyManager(QtWidgets.QWidget):
         self.setWindowTitle('Personal Dictionary')
 
         # The icon
-        icon_path = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Local', 'vmanager', "icon.png")
-        self.setWindowIcon(QtGui.QIcon(icon_path))
+        self.setWindowIcon(QtGui.QIcon('/home/adam178/.local/share/vmanager/korean_icon.png'))
 
         # Make the window always on top
         self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
@@ -64,12 +63,7 @@ class VocabularyManager(QtWidgets.QWidget):
         self.meaning_input.returnPressed.connect(self.add_entry)
 
     def initDB(self):
-        # Adjust the path to your Windows system
-        db_dir = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Local', 'vmanager')
-        os.makedirs(db_dir, exist_ok=True)
-        db_path = os.path.join(db_dir, 'vocabulary.db')
-
-        self.conn = sqlite3.connect(db_path)
+        self.conn = sqlite3.connect('/home/adam178/.local/share/vmanager/vocabulary.db')
         self.cursor = self.conn.cursor()
         self.cursor.execute('''
         CREATE TABLE IF NOT EXISTS vocabulary (
@@ -87,6 +81,7 @@ class VocabularyManager(QtWidgets.QWidget):
             self.cursor.execute('INSERT INTO vocabulary (word, meaning) VALUES (?, ?)', (word, meaning))
             self.conn.commit()
             self.result_text.setText(f'Added: {word} - {meaning}')
+
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_S and event.modifiers() & Qt.ControlModifier:
