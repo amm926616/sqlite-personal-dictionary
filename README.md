@@ -1,6 +1,7 @@
 ### sqlite-personal-dictionary
 ![logo](./neuron-connection.png)
 
+## Installation
 #### Windows
 
 Download the installer from the Releases section.
