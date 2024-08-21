@@ -23,7 +23,7 @@ class VocabularyManager(QtWidgets.QWidget):
 
         if (self.os_name == "Linux"):
             # Adjust the path to your Windows system
-            db_dir = os.path.join(os.environ['HOME'], '.config', 'personal_dictionary')
+            db_dir = os.path.join(os.environ['HOME'], '.config', 'sqlite_personal_dictionary')
             os.makedirs(db_dir, exist_ok=True)
 
         elif (self.os_name == "Windows"):
