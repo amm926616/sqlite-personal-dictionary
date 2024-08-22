@@ -1,5 +1,5 @@
 ### sqlite-personal-dictionary
-![logo](./neuron-connection.png)
+<img src="./neuron-connection.png" alt="logo" width="200"/>
 
 ## Installation
 #### Windows
