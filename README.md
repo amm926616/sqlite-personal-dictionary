@@ -29,7 +29,7 @@ I call it a "personal dictionary" because it functions similarly to a traditiona
 
 #### Keyboard shortcuts
 - ctrl + s >> Search Entry
-- ctrl + d >> Delete Entry
+- ctrl + q >> Delete Entry
 
 ### screenshots
 ##### on windows barebone
