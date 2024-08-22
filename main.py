@@ -28,7 +28,7 @@ class VocabularyManager(QtWidgets.QWidget):
 
         elif (self.os_name == "Windows"):
             # Adjust the path to your Windows system
-            db_dir = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Local', 'personal-dictionary')
+            db_dir = os.path.join(os.environ['USERPROFILE'], 'AppData', 'Local', 'sqlite-personal-dictionary')
             os.makedirs(db_dir, exist_ok=True)
 
         self.db_path = os.path.join(db_dir, 'vocabulary.db')
