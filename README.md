@@ -14,6 +14,10 @@ Clone or download this repository and use it as desired. If you want to add this
 Make sure to reload your `.bashrc` or restart your terminal for the alias to take effect.
 The database location is in .config/sqlite-personal-dictionary
 
+This dictionary is designed to work particularly well with Korean syllable-based searches. For example, if you search for "콩국수," the tool will break it down into its syllables—"콩," "국," and "수"—and then search the database for words containing each of these syllables. I've included a personal collection of a Korean dictionary in "my korean vocabulary" folder that you can use by pasting it into your database location.
+
+Using this tool for English words is not recommended because it breaks words down into individual characters, which isn’t useful. For example, "star" would be split into "s," "t," "a," and "r," which doesn't yield meaningful results since English words are generally not based on syllable components like Korean words.
+
 ## How I made it
 I believe the Korean language is similar to my native Burmese in many ways. One key similarity is that the composition of each word is made up of base syllables, each with its own meaning. This project was born out of a desperate need because my INTP brain struggles to memorize vocabulary without breaking it down into these base components.
 
